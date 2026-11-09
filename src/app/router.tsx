@@ -25,6 +25,19 @@ import { AccessDenied } from '@/components/feedback/AccessDenied';
 import { NotFound } from '@/components/feedback/NotFound';
 import { ComingSoon } from '@/components/feedback/ComingSoon';
 
+// Phase 2 Operational Pages
+import { LoadsPage } from '@/features/dispatcher/pages/LoadsPage';
+import { DispatchBoardPage } from '@/features/dispatcher/pages/DispatchBoardPage';
+import { TrackingPage } from '@/features/dispatcher/pages/TrackingPage';
+import { TrucksPage } from '@/features/fleet/pages/TrucksPage';
+import { DriversPage } from '@/features/fleet/pages/DriversPage';
+import { AssignmentsPage } from '@/features/driver/pages/AssignmentsPage';
+import { UserManagementPage } from '@/features/admin/pages/UserManagementPage';
+import { RolesPage } from '@/features/admin/pages/RolesPage';
+import { AgentMonitorPage } from '@/features/admin/pages/AgentMonitorPage';
+import { ShipmentsPage } from '@/features/customer/pages/ShipmentsPage';
+import { ShipmentDetailPage } from '@/features/customer/pages/ShipmentDetailPage';
+
 export const router = createBrowserRouter([
   // ----------------------------------------------------------------
   // Public Marketing Website Routes (Single-Page Anchor Scrolling)
@@ -77,56 +90,11 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <Navigate to="/dispatcher/dashboard" replace /> },
           { path: 'dashboard', element: <DispatcherDashboard /> },
-          {
-            path: 'loads',
-            element: (
-              <ComingSoon
-                title="Loads"
-                description="Manage, create, and track all freight loads in the TruckFlow system."
-                phase="Phase 2"
-              />
-            ),
-          },
-          {
-            path: 'dispatch',
-            element: (
-              <ComingSoon
-                title="Dispatch Board"
-                description="Assign loads to trucks and drivers. View the full dispatch board."
-                phase="Phase 2"
-              />
-            ),
-          },
-          {
-            path: 'tracking',
-            element: (
-              <ComingSoon
-                title="Fleet Tracking"
-                description="Real-time and recorded fleet location visibility."
-                phase="Phase 2"
-              />
-            ),
-          },
-          {
-            path: 'trucks',
-            element: (
-              <ComingSoon
-                title="Trucks"
-                description="Manage the full truck inventory, maintenance records, and availability."
-                phase="Phase 2"
-              />
-            ),
-          },
-          {
-            path: 'drivers',
-            element: (
-              <ComingSoon
-                title="Drivers"
-                description="Manage driver profiles, assignments, and availability."
-                phase="Phase 2"
-              />
-            ),
-          },
+          { path: 'loads', element: <LoadsPage /> },
+          { path: 'dispatch', element: <DispatchBoardPage /> },
+          { path: 'tracking', element: <TrackingPage /> },
+          { path: 'trucks', element: <TrucksPage /> },
+          { path: 'drivers', element: <DriversPage /> },
           {
             path: 'routes',
             element: (
@@ -174,36 +142,9 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <Navigate to="/fleet/dashboard" replace /> },
           { path: 'dashboard', element: <FleetDashboard /> },
-          {
-            path: 'trucks',
-            element: (
-              <ComingSoon
-                title="Trucks"
-                description="Fleet inventory, truck profiles, and maintenance tracking."
-                phase="Phase 2"
-              />
-            ),
-          },
-          {
-            path: 'drivers',
-            element: (
-              <ComingSoon
-                title="Drivers"
-                description="Driver roster, license management, and status tracking."
-                phase="Phase 2"
-              />
-            ),
-          },
-          {
-            path: 'tracking',
-            element: (
-              <ComingSoon
-                title="Fleet Tracking"
-                description="Location history and fleet movement visibility."
-                phase="Phase 2"
-              />
-            ),
-          },
+          { path: 'trucks', element: <TrucksPage /> },
+          { path: 'drivers', element: <DriversPage /> },
+          { path: 'tracking', element: <TrackingPage /> },
           {
             path: 'reports',
             element: (
@@ -231,16 +172,7 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <Navigate to="/driver/dashboard" replace /> },
           { path: 'dashboard', element: <DriverDashboard /> },
-          {
-            path: 'assignments',
-            element: (
-              <ComingSoon
-                title="My Assignments"
-                description="View your current and upcoming load assignments."
-                phase="Phase 2"
-              />
-            ),
-          },
+          { path: 'assignments', element: <AssignmentsPage /> },
           {
             path: 'documents',
             element: (
@@ -278,23 +210,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'shipments',
-            element: (
-              <ComingSoon
-                title="Shipment Details"
-                description="View detailed information about your shipments."
-                phase="Phase 2"
-              />
-            ),
+            element: <ShipmentsPage />,
           },
           {
             path: 'shipments/:id',
-            element: (
-              <ComingSoon
-                title="Shipment Details"
-                description="View detailed information about your shipment."
-                phase="Phase 2"
-              />
-            ),
+            element: <ShipmentDetailPage />,
           },
           {
             path: 'support',
@@ -333,46 +253,10 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <Navigate to="/admin/dashboard" replace /> },
           { path: 'dashboard', element: <AdminDashboard /> },
-          {
-            path: 'users',
-            element: (
-              <ComingSoon
-                title="User Management"
-                description="Create, edit, and manage TruckFlow user accounts and roles."
-                phase="Phase 2"
-              />
-            ),
-          },
-          {
-            path: 'roles',
-            element: (
-              <ComingSoon
-                title="Roles & Permissions"
-                description="Configure role-based access control and permission sets."
-                phase="Phase 2"
-              />
-            ),
-          },
-          {
-            path: 'agents',
-            element: (
-              <ComingSoon
-                title="Agent Monitoring"
-                description="Monitor the status and performance of AI dispatch agents."
-                phase="Phase 3"
-              />
-            ),
-          },
-          {
-            path: 'agents/logs',
-            element: (
-              <ComingSoon
-                title="Activity Logs"
-                description="Full audit trail of agent actions and system events."
-                phase="Phase 3"
-              />
-            ),
-          },
+          { path: 'users', element: <UserManagementPage /> },
+          { path: 'roles', element: <RolesPage /> },
+          { path: 'agents', element: <AgentMonitorPage /> },
+          { path: 'agents/logs', element: <AgentMonitorPage /> },
           {
             path: 'settings',
             element: (
